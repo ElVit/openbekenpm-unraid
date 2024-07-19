@@ -13,6 +13,7 @@ jobs:
       uses: edlanglois/pkgbuild-action@v1
       with:
         pkgdir: 'src'
+        makepkgArgs: 'tasmotapm'
     - name: Print Package Files
       run: |
         echo "Successfully created the following package archive"
