@@ -8,6 +8,8 @@ jobs:
     steps:
     - name: Checkout
       uses: actions/checkout@v2
+    - name: Build archlinux package
+      uses: mijailr/arch-makepkg-action@v1
     - name: Run mkpkg
       run: ./src/mkpkg tasmotapm
     - name: Upload txz
