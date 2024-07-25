@@ -23,60 +23,60 @@ Cond="version_compare(parse_ini_file('/etc/unraid-version')['version'],'6.11.9',
   <span class="w44">
   <span class="w72">
 */
-$pluginname = "tasmota"; // substitute this entry with the name of your plugin
+$pluginname = "openbeken"; // substitute this entry with the name of your plugin
 
- $tasmotapm_cfg = parse_plugin_cfg("tasmotapm",true);
+ $openbekenpm_cfg = parse_plugin_cfg("openbekenpm",true);
 $mytiles[$pluginname]['column1'] =
 <<<EOT
-<tbody title="_(Tasmota)_">
-<tr><td>_(Tasmota Power Monitor)_<a href="/Dashboard/Settings/TasmotaPMSettings" title="_(Go to Tasmota settings)_"><i class="fa fa-fw fa-cog control"></i></a></td></tr>
-<tr><td><i class='icon-ups'></i><div class='section'><span id='load'>_(Usage)_: <span class='tasmotapm-energy-power'>0</span></span><br><br></div></td></tr>
+<tbody title="_(OpenBeken)_">
+<tr><td>_(OpenBeken Power Monitor)_<a href="/Dashboard/Settings/OpenBekenPMSettings" title="_(Go to OpenBeken settings)_"><i class="fa fa-fw fa-cog control"></i></a></td></tr>
+<tr><td><i class='icon-ups'></i><div class='section'><span id='load'>_(Usage)_: <span class='openbekenpm-energy-power'>0</span></span><br><br></div></td></tr>
 
-            <tr class="tasmotapm_view">
-            <td><span class="w26">Today:</span><span class="w26 tasmotapm-energy-today"></span>
-            <span class="w26 tasmotapm-costs_today"></td>
+            <tr class="openbekenpm_view">
+            <td><span class="w26">Today:</span><span class="w26 openbekenpm-energy-today"></span>
+            <span class="w26 openbekenpm-costs_today"></td>
             </tr>
 
-            <tr class="tasmotapm_view">
-            <td><span class="w26">Yesterday:</span><span class="w26 tasmotapm-energy-yesterday"></span>
-            <span class="w26 tasmotapm-costs_yesterday"></span> </td>
+            <tr class="openbekenpm_view">
+            <td><span class="w26">Yesterday:</span><span class="w26 openbekenpm-energy-yesterday"></span>
+            <span class="w26 openbekenpm-costs_yesterday"></span> </td>
             </tr>
 
-            <tr class="tasmotapm_view">
+            <tr class="openbekenpm_view">
                 <td><span class="w26">Total:</span>
-                <span class="w26 tasmotapm-energy-total"></span>
-                <span class="w26 tasmotapm-costs_total"></span></span></td>
+                <span class="w26 openbekenpm-energy-total"></span>
+                <span class="w26 openbekenpm-costs_total"></span></span></td>
             </tr>
 
-            <tr class="tasmotapm_view">
+            <tr class="openbekenpm_view">
                 <td><span class="w26">Power</span>
-                <span class="w26 tasmotapm-energy-power"></span></td>
+                <span class="w26 openbekenpm-energy-power"></span></td>
             </tr>
-            <tr class="tasmotapm_view">
+            <tr class="openbekenpm_view">
 
                 <td><span class="w26">Voltage</span>
-                <span class="w26 tasmotapm-energy-voltage"></span></td>
+                <span class="w26 openbekenpm-energy-voltage"></span></td>
 
             </tr>
-            <tr class="tasmotapm_view">
+            <tr class="openbekenpm_view">
 
                 <td><span class="w26">Current</span>
-            <span class="w26 tasmotapm-energy-current"></span></td>
+            <span class="w26 openbekenpm-energy-current"></span></td>
 
             </tr>
-            <tr class="tasmotapm_view">
+            <tr class="openbekenpm_view">
             <td><span class="w26">Apparent power</span>
-            <span class="w26 tasmotapm-energy-apparentpower"></span></td>
+            <span class="w26 openbekenpm-energy-apparentpower"></span></td>
 
             </tr>
-            <tr class="tasmotapm_view">
+            <tr class="openbekenpm_view">
          <td><span class="w26">Reactive power</span>
-            <span class="w26 tasmotapm-energy-reactivepower"></span></td>
+            <span class="w26 openbekenpm-energy-reactivepower"></span></td>
 
             </tr>
-            <tr class="tasmotapm_view">
+            <tr class="openbekenpm_view">
               <td><span class="w26">Efficiency</span>
-                <span class="w26 tasmotapm-energy-efficiency"></span></td>
+                <span class="w26 openbekenpm-energy-efficiency"></span></td>
 
             </tr>
 </tbody>
@@ -85,32 +85,32 @@ EOT;
 ?>
 <script>
 
-function tasmotapm_status() {
-    $.getJSON("/plugins/tasmotapm/status.php", (data) => {
+function openbekenpm_status() {
+    $.getJSON("/plugins/openbekenpm/status.php", (data) => {
         if (data) {
-            $(".tasmotapm-energy-power").html(data.Power+" W");
-            $(".tasmotapm-energy-today").html(data.Today+" kWh");
-            $(".tasmotapm-energy-yesterday").html(data.Yesterday+" kWh");
-            $(".tasmotapm-energy-total").html(data.Total+" kWh");
-            $(".tasmotapm-energy-voltage").html(data.Voltage+" V");
-            $(".tasmotapm-energy-current").html(data.Current+" A");
-            $(".tasmotapm-energy-apparentpower").html(data.ApparentPower+" VA");
-            $(".tasmotapm-energy-reactivepower").html(data.ReactivePower+" VAr");
-            $(".tasmotapm-energy-efficiency").html((Number.parseFloat(data.Factor) * 100).toFixed()+" %");
-            $(".tasmotapm-costs_today").html((Number.parseFloat(data.Costs_Price) * Number.parseFloat(data.Today)).toFixed(2)+" "+data.Costs_Unit);
-            $(".tasmotapm-costs_yesterday").html((Number.parseFloat(data.Costs_Price) * Number.parseFloat(data.Yesterday)).toFixed(2)+" "+data.Costs_Unit);
-            $(".tasmotapm-costs_total").html((Number.parseFloat(data.Costs_Price) * Number.parseFloat(data.Total)).toFixed(2)+" "+data.Costs_Unit);
-            $(".tasmotapm-costs_unit").html(data.Costs_Unit);
+            $(".openbekenpm-energy-power").html(data.Power+" W");
+            $(".openbekenpm-energy-today").html(data.Today+" kWh");
+            $(".openbekenpm-energy-yesterday").html(data.Yesterday+" kWh");
+            $(".openbekenpm-energy-total").html(data.Total+" kWh");
+            $(".openbekenpm-energy-voltage").html(data.Voltage+" V");
+            $(".openbekenpm-energy-current").html(data.Current+" A");
+            $(".openbekenpm-energy-apparentpower").html(data.ApparentPower+" VA");
+            $(".openbekenpm-energy-reactivepower").html(data.ReactivePower+" VAr");
+            $(".openbekenpm-energy-efficiency").html((Number.parseFloat(data.Factor) * 100).toFixed()+" %");
+            $(".openbekenpm-costs_today").html((Number.parseFloat(data.Costs_Price) * Number.parseFloat(data.Today)).toFixed(2)+" "+data.Costs_Unit);
+            $(".openbekenpm-costs_yesterday").html((Number.parseFloat(data.Costs_Price) * Number.parseFloat(data.Yesterday)).toFixed(2)+" "+data.Costs_Unit);
+            $(".openbekenpm-costs_total").html((Number.parseFloat(data.Costs_Price) * Number.parseFloat(data.Total)).toFixed(2)+" "+data.Costs_Unit);
+            $(".openbekenpm-costs_unit").html(data.Costs_Unit);
         }
     });
 }
 
 $(function(){
-  tasmotapm_status();
+  openbekenpm_status();
 });
 
-if (<?=$tasmotapm_cfg['UIREFRESH'];?>) {
-  setInterval(tasmotapm_status, <?=$tasmotapm_cfg['UIREFRESH'];?>);
+if (<?=$openbekenpm_cfg['UIREFRESH'];?>) {
+  setInterval(openbekenpm_status, <?=$openbekenpm_cfg['UIREFRESH'];?>);
 }
 
 </script>
