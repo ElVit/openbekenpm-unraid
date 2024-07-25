@@ -5,7 +5,7 @@ $openbekenpm_use_pass		= isset($openbekenpm_cfg['DEVICE_USE_PASS']) ? $openbeken
 $openbekenpm_device_user	= isset($openbekenpm_cfg['DEVICE_USER']) ? $openbekenpm_cfg['DEVICE_USER'] : "";
 $openbekenpm_device_pass	= isset($openbekenpm_cfg['DEVICE_PASS']) ? $openbekenpm_cfg['DEVICE_PASS'] : "";
 $openbekenpm_costs_price	= isset($openbekenpm_cfg['COSTS_PRICE']) ? $openbekenpm_cfg['COSTS_PRICE'] : "0.0";
-$openbekenpm_costs_unit		= isset($openbekenpm_cfg['COSTS_UNIT']) ? $openbekenpm_cfg['COSTS_UNIT'] : "USD";
+$openbekenpm_costs_unit		= isset($openbekenpm_cfg['COSTS_UNIT']) ? $openbekenpm_cfg['COSTS_UNIT'] : "EUR";
 
 
 if ($openbekenpm_device_ip == "") {
@@ -31,15 +31,15 @@ $datajson = file_get_contents($Url);
 $data = json_decode($datajson, true); 
 
 $json = array(
-		'Total' => $data['StatusSNS']['ENERGY']['Total'],
-		'Today' => $data['StatusSNS']['ENERGY']['Today'],
-		'Yesterday' => $data['StatusSNS']['ENERGY']['Yesterday'],
-		'Voltage' => $data['StatusSNS']['ENERGY']['Voltage'],
-		'Current' => $data['StatusSNS']['ENERGY']['Current'],
+		'Power' => $data['StatusSNS']['ENERGY']['Power'],
 		'ApparentPower' => $data['StatusSNS']['ENERGY']['ApparentPower'],
 		'ReactivePower' => $data['StatusSNS']['ENERGY']['ReactivePower'],
 		'Factor' => $data['StatusSNS']['ENERGY']['Factor'],
-		'Power' => $data['StatusSNS']['ENERGY']['Power'],
+		'Voltage' => $data['StatusSNS']['ENERGY']['Voltage'],
+		'Current' => $data['StatusSNS']['ENERGY']['Current'],
+		'Total' => $data['StatusSNS']['ENERGY']['ConsumptionTotal'],
+		'Yesterday' => $data['StatusSNS']['ENERGY']['Yesterday'],
+		'Today' => $data['StatusSNS']['ENERGY']['ConsumptionLastHour'],
 		'Costs_Price' => $openbekenpm_costs_price,
 		'Costs_Unit' => $openbekenpm_costs_unit
 	);
