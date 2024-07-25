@@ -115,10 +115,10 @@ if (<?=$openbekenpm_cfg['UIREFRESH'];?>) {
 $(function() {
   // append data from the table into the correct one
   $("#db-box1").append($(".dash_openbekenpm").html());
-  
+
   // reload toggle to get the correct state
   toggleView('openbekenpm_view',true);
-  
+
   // reload sorting to get the stored data (cookie)
   sortTable($('#db-box1'),$.cookie('db-box1'));
 });

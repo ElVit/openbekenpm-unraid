@@ -3,14 +3,14 @@ Icon="openbekenpm.png"
 Title="OpenBeken Power Monitor"
 ---
 <?php
-$openbekenpm_cfg 		= parse_plugin_cfg("openbekenpm",true);
+$openbekenpm_cfg 		      = parse_plugin_cfg("openbekenpm",true);
 $openbekenpm_device_ip		= isset($openbekenpm_cfg['DEVICE_IP']) ? $openbekenpm_cfg['DEVICE_IP'] : "";
-$openbekenpm_use_pass		= isset($openbekenpm_cfg['DEVICE_USE_PASS']) ? $openbekenpm_cfg['DEVICE_USE_PASS'] : "false";
+$openbekenpm_use_pass		  = isset($openbekenpm_cfg['DEVICE_USE_PASS']) ? $openbekenpm_cfg['DEVICE_USE_PASS'] : "false";
 $openbekenpm_device_user	= isset($openbekenpm_cfg['DEVICE_USER']) ? $openbekenpm_cfg['DEVICE_USER'] : "admin";
 $openbekenpm_device_pass	= isset($openbekenpm_cfg['DEVICE_PASS']) ? $openbekenpm_cfg['DEVICE_PASS'] : "";
 $openbekenpm_uirefresh 		= isset($openbekenpm_cfg['UIREFRESH']) ? $openbekenpm_cfg['UIREFRESH'] : "1000";
 $openbekenpm_costs_price	= isset($openbekenpm_cfg['COSTS_PRICE']) ? $openbekenpm_cfg['COSTS_PRICE'] : "0.0";
-$openbekenpm_costs_unit		= isset($openbekenpm_cfg['COSTS_UNIT']) ? $openbekenpm_cfg['COSTS_UNIT'] : "USD";
+$openbekenpm_costs_unit		= isset($openbekenpm_cfg['COSTS_UNIT']) ? $openbekenpm_cfg['COSTS_UNIT'] : "EUR";
 ?>
 
 <form markdown="1" method="POST" action="/update.php" target="progressFrame">
@@ -53,6 +53,6 @@ function resetDATA(form) {
   form.DEVICE_PASS.value = "";
   form.UIREFRESH.value = 1000;
   form.COSTS_PRICE.value = 0.00;
-  form.COSTS_UNIT.value = "USD";
+  form.COSTS_UNIT.value = "EUR";
 }
 </script>

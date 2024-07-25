@@ -1,5 +1,5 @@
 <?php
-$openbekenpm_cfg 		= parse_ini_file( "/boot/config/plugins/openbekenpm/openbekenpm.cfg" );
+$openbekenpm_cfg 			= parse_ini_file( "/boot/config/plugins/openbekenpm/openbekenpm.cfg" );
 $openbekenpm_device_ip		= isset($openbekenpm_cfg['DEVICE_IP']) ? $openbekenpm_cfg['DEVICE_IP'] : "";
 $openbekenpm_use_pass		= isset($openbekenpm_cfg['DEVICE_USE_PASS']) ? $openbekenpm_cfg['DEVICE_USE_PASS'] : "false";
 $openbekenpm_device_user	= isset($openbekenpm_cfg['DEVICE_USER']) ? $openbekenpm_cfg['DEVICE_USER'] : "";
@@ -28,7 +28,7 @@ if ($openbekenpm_use_pass == 1) {
 $Url = $Url . "cmnd=Status%208";
 
 $datajson = file_get_contents($Url);
-$data = json_decode($datajson, true); 
+$data = json_decode($datajson, true);
 
 $json = array(
 		'Power' => $data['StatusSNS']['ENERGY']['Power'],

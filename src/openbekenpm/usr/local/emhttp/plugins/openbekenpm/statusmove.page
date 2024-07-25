@@ -53,13 +53,10 @@ $mytiles[$pluginname]['column1'] =
                 <span class="w26 openbekenpm-energy-power"></span></td>
             </tr>
             <tr class="openbekenpm_view">
-
                 <td><span class="w26">Voltage</span>
                 <span class="w26 openbekenpm-energy-voltage"></span></td>
-
             </tr>
             <tr class="openbekenpm_view">
-
                 <td><span class="w26">Current</span>
             <span class="w26 openbekenpm-energy-current"></span></td>
 
@@ -70,14 +67,13 @@ $mytiles[$pluginname]['column1'] =
 
             </tr>
             <tr class="openbekenpm_view">
-         <td><span class="w26">Reactive power</span>
+            <td><span class="w26">Reactive power</span>
             <span class="w26 openbekenpm-energy-reactivepower"></span></td>
 
             </tr>
             <tr class="openbekenpm_view">
-              <td><span class="w26">Efficiency</span>
-                <span class="w26 openbekenpm-energy-efficiency"></span></td>
-
+            <td><span class="w26">Efficiency</span>
+            <span class="w26 openbekenpm-energy-efficiency"></span></td>
             </tr>
 </tbody>
 EOT;
